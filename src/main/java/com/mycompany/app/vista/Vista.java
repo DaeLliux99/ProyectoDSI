@@ -12,7 +12,7 @@ public class Vista {
   }
 
   public void gui() {
-    JFrame ventana = new JFrame("ProyectoDSI");
-    ventana.setVisible(true);
+    Login login = new Login();
+    login.setVisible(true);
   }
 }
