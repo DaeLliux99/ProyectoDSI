@@ -5,18 +5,20 @@
  */
 package com.mycompany.app.vista;
 
+import com.mycompany.app.controlador.Controlador;
+import com.mycompany.app.modelo.Modelo;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author LEONARDO
  */
-public class Login extends javax.swing.JFrame {
-
+public class Login extends javax.swing.JFrame implements Vista{
     /**
      * Creates new form Login
      */
-    public Login() {
+    public Login(/*Controlador controlador*/) {
+        //this.controlador = controlador;
         initComponents();
     }
 
@@ -59,11 +61,6 @@ public class Login extends javax.swing.JFrame {
 
         botonIngresar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         botonIngresar.setText("INGRESAR");
-        botonIngresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonIngresarActionPerformed(evt);
-            }
-        });
         jPanel1.add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, -1, -1));
 
         botonSalir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -87,40 +84,25 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
-        // TODO add your handling code here:
-        /*
-        
-        String nombre_usuario = textoUsuario.getText();
-        String pass = textoContraseña.getText();
-        boolean loggeado = false;
-        for (Usuario u : A.listaUsuarios) {
-            if (nombre_usuario.equalsIgnoreCase(u.getUsername()) && pass.equalsIgnoreCase(u.getPassword()) && !loggeado) {
-                loggeado = true;
-                if (u.isManagent()) {
-                    JOptionPane.showMessageDialog(null, "Usuario administrador "+CCampoUsuario.getText());
-                    PanelDeControl h = new PanelDeControl(A);
-                    this.setVisible(false);
-                    h.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Usuario empleado "+CCampoUsuario.getText());
-                    Horarios h = new Horarios(A);
-                    this.setVisible(false);
-                    h.setVisible(true);
-                }
-            }
-        }
-        if (loggeado == false) {
-            JOptionPane.showMessageDialog(null, "ACCESO DENEGADO");
-        }       
-         */
-        Ventana_Egreso h = new Ventana_Egreso();
-        this.setVisible(false);
-        h.setVisible(true);
+    
+    public void mostrar() {
+        this.setVisible(true);
+    }
+    
+    @Override
+    public Vista setModelo(Modelo modelo) {
+        this.modeloUsuario = modelo;
+        return this;
+    }
 
-    }//GEN-LAST:event_botonIngresarActionPerformed
-
-
+    @Override
+    public Vista setControlador(Controlador controlador) {
+        this.controladorLogin = controlador;
+        return this;
+    }
+    
+    private Modelo modeloUsuario;
+    private Controlador controladorLogin;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIngresar;
     private javax.swing.JButton botonSalir;
@@ -131,4 +113,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField textoContraseña;
     private javax.swing.JTextField textoUsuario;
     // End of variables declaration//GEN-END:variables
+
+
 }

@@ -1,9 +1,9 @@
 package com.mycompany.app;
 
-import com.mycompany.app.controlador.Controlador;
-import com.mycompany.app.vista.Vista;
-import com.mycompany.app.modelo.Modelo;
+import com.mycompany.app.controlador.login.ControladorLogin;
+import com.mycompany.app.modelo.usuario.ModeloUsuario;
 import com.mycompany.app.vista.Login;
+
 
 /**
  * Hello world!
@@ -12,10 +12,12 @@ import com.mycompany.app.vista.Login;
 public class App {
 
     public static void main( String[] args ) {
-      Vista vista = new Vista();
-      vista.vista();
-      
-      
-      
+        ModeloUsuario mu = new ModeloUsuario().cargar();
+        Login login = new Login();
+        ControladorLogin cl = new ControladorLogin();
+        mu.setVista(login);
+        cl.setModelo(mu).setVista(login);
+        login.setControlador(cl).setModelo(mu);
+        login.mostrar();
     }
 }

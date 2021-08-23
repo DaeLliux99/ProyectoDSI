@@ -1,6 +1,13 @@
-/home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/App.java
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/controlador/Controlador.java
+/home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/modelo/usuario/UsuarioDAO.java
+/home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/vista/tablas/TablaPaquetes.java
+/home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/modelo/usuario/Usuario.java
+/home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/modelo/producto/Producto.java
+/home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/modelo/usuario/ModeloUsuario.java
+/home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/App.java
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/modelo/Modelo.java
+/home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/controlador/login/ControladorLogin.java
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/vista/Ventana_Egreso.java
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/vista/Login.java
+/home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/modelo/paquete/Paquete.java
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/vista/Vista.java
