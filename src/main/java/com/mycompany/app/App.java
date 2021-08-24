@@ -12,6 +12,7 @@ import com.mycompany.app.vista.Login;
 public class App {
 
     public static void main( String[] args ) {
+        
         ModeloUsuario mu = new ModeloUsuario().cargar();
         Login login = new Login();
         ControladorLogin cl = new ControladorLogin();
@@ -19,5 +20,7 @@ public class App {
         cl.setModelo(mu).setVista(login);
         login.setControlador(cl).setModelo(mu);
         login.mostrar();
+        
+        
     }
 }

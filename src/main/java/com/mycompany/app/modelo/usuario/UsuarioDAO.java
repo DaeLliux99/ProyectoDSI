@@ -7,8 +7,10 @@ package com.mycompany.app.modelo.usuario;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -36,6 +38,20 @@ public class UsuarioDAO {
             return usuarios;
         } catch (FileNotFoundException fnde) {
             System.out.println("No se ha encontrado el fichero de usuarios");
+            usuarios = new ArrayList<>();
+            usuarios.add(new Usuario("123", "123", "almacenero"));
+            usuarios.add(new Usuario("456", "456", "cajero"));
+            try {
+                FileOutputStream fos = new FileOutputStream(data);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(usuarios);
+                oos.close();
+                System.out.println("Datos guardados con éxito");
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            return usuarios;
         } catch (IOException ioe) {
             System.out.println("Error de entrada/salida al cargar los datos");
         } catch (ClassNotFoundException ex) {

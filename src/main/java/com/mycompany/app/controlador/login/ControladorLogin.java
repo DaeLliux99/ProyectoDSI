@@ -7,6 +7,8 @@ package com.mycompany.app.controlador.login;
 
 import com.mycompany.app.controlador.Controlador;
 import com.mycompany.app.modelo.Modelo;
+import com.mycompany.app.modelo.usuario.ModeloUsuario;
+import com.mycompany.app.modelo.usuario.Usuario;
 import com.mycompany.app.vista.Login;
 import com.mycompany.app.vista.Vista;
 
@@ -16,8 +18,8 @@ import com.mycompany.app.vista.Vista;
  */
 public class ControladorLogin implements Controlador{
     
-    private Vista login;
-    private Modelo modeloUsuario;
+    private Login login;
+    private ModeloUsuario modeloUsuario;
     
     
     public ControladorLogin() {
@@ -30,13 +32,24 @@ public class ControladorLogin implements Controlador{
 
     @Override
     public Controlador setVista(Vista vista) {
-        this.login = vista;
+        this.login = (Login) vista;
         return this;
     }
 
     @Override
     public Controlador setModelo(Modelo modelo) {
-        this.modeloUsuario = modelo;
+        this.modeloUsuario = (ModeloUsuario) modelo;
         return this;
+    }
+    
+    public void verificarCuenta() {
+        Usuario usuario = login.getUsuario();
+        if (usuario.getNombreUsuario().isEmpty() || usuario.getContraseña().isEmpty()) {
+            System.out.println("Nombre de usuario vaciooooo");
+        } else if (!modeloUsuario.verificarCuenta(usuario)){
+            System.out.println("Usuario o contraseña incorrectos");
+        } else {
+            System.out.println("Registrado correctamente!");
+        }
     }
 }

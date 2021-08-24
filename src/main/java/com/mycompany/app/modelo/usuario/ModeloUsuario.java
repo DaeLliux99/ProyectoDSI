@@ -7,6 +7,7 @@ package com.mycompany.app.modelo.usuario;
 
 import com.mycompany.app.modelo.Modelo;
 import com.mycompany.app.vista.Login;
+import com.mycompany.app.vista.VentanaEgreso;
 import com.mycompany.app.vista.Vista;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,8 @@ import java.util.List;
  * @author esteban
  */
 public class ModeloUsuario implements Modelo{
-    private Vista login;
+    private Login login;
+    private VentanaEgreso ve;
     List <Usuario> usuarios;
     
     public ModeloUsuario() {
@@ -25,7 +27,7 @@ public class ModeloUsuario implements Modelo{
     
     @Override
     public Modelo setVista(Vista vista) {
-        this.login = login;
+        this.login = (Login) vista;
         return this;
     }
     
@@ -37,5 +39,19 @@ public class ModeloUsuario implements Modelo{
         return this;
     }
 
-    
+    public boolean verificarCuenta(Usuario anonimo) {
+        for (Usuario u: usuarios) {
+            if (anonimo.equals(u)) {
+                if (u.getCargo().equals("almacenero")) {
+                }
+                if (u.getCargo().equals("cajero")) {
+                    login.setVisible(false);
+                    ve = new VentanaEgreso();
+                    ve.setVisible(true);
+                }
+                return true;
+            }
+        }
+        return false;
+    }
 }

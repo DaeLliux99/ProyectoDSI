@@ -14,12 +14,12 @@ import java.util.ArrayList;
  *
  * @author LEONARDO
  */
-public class Ventana_Egreso extends javax.swing.JFrame {
+public class VentanaEgreso extends javax.swing.JFrame {
 
     /**
      * Creates new form Ventana_Egreso
      */
-    public Ventana_Egreso() {
+    public VentanaEgreso() {
         paquetes = new ArrayList<>();
         paquetes.add(new Paquete("asd",new Producto(123, "Dildo"),20));
         initComponents();

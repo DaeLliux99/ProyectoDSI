@@ -6,7 +6,10 @@
 package com.mycompany.app.vista;
 
 import com.mycompany.app.controlador.Controlador;
+import com.mycompany.app.controlador.login.ControladorLogin;
 import com.mycompany.app.modelo.Modelo;
+import com.mycompany.app.modelo.usuario.ModeloUsuario;
+import com.mycompany.app.modelo.usuario.Usuario;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,8 +20,7 @@ public class Login extends javax.swing.JFrame implements Vista{
     /**
      * Creates new form Login
      */
-    public Login(/*Controlador controlador*/) {
-        //this.controlador = controlador;
+    public Login() {
         initComponents();
     }
 
@@ -61,6 +63,11 @@ public class Login extends javax.swing.JFrame implements Vista{
 
         botonIngresar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         botonIngresar.setText("INGRESAR");
+        botonIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonIngresarActionPerformed(evt);
+            }
+        });
         jPanel1.add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, -1, -1));
 
         botonSalir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -84,6 +91,10 @@ public class Login extends javax.swing.JFrame implements Vista{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
+        controladorLogin.verificarCuenta();
+    }//GEN-LAST:event_botonIngresarActionPerformed
+
     
     public void mostrar() {
         this.setVisible(true);
@@ -91,18 +102,22 @@ public class Login extends javax.swing.JFrame implements Vista{
     
     @Override
     public Vista setModelo(Modelo modelo) {
-        this.modeloUsuario = modelo;
+        this.modeloUsuario = (ModeloUsuario) modelo;
         return this;
     }
 
     @Override
     public Vista setControlador(Controlador controlador) {
-        this.controladorLogin = controlador;
+        this.controladorLogin = (ControladorLogin) controlador;
         return this;
     }
     
-    private Modelo modeloUsuario;
-    private Controlador controladorLogin;
+    public Usuario getUsuario() {
+        return new Usuario(textoUsuario.getText(), textoContraseña.getText());
+    }
+    
+    private ModeloUsuario modeloUsuario;
+    private ControladorLogin controladorLogin;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIngresar;
     private javax.swing.JButton botonSalir;
