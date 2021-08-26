@@ -169,6 +169,7 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
     @Override
     public Vista setModelo(Modelo modelo) {
         this.modeloIngreso = (ModeloIngreso) modelo;
+        this.listaPaqueteCambiada();
         return this;
     }
 
