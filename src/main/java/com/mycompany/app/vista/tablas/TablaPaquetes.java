@@ -21,6 +21,8 @@ public class TablaPaquetes extends AbstractTableModel{
     public TablaPaquetes(List<Paquete> paquetes) {
         columnas = Arrays.asList("Item", "Codigo", "Nombre", "Cantidad");
         this.paquetes = paquetes;
+        //System.out.println(columnas.size());
+        //System.out.println(paquetes.size());
     }
     
     @Override
@@ -40,12 +42,16 @@ public class TablaPaquetes extends AbstractTableModel{
             paquete = paquetes.get(rowIndex);
         }
         switch (columnIndex) {
-            case 0: return paquete.getItem();
-            case 1: return paquete.getProducto().getCodigo();
+            case 0: return rowIndex + 1;
+            case 1: return paquete.getCodigo();
             case 2: return paquete.getProducto().getNombre();
             case 3: return paquete.getCantidad();
             default: return paquete;
         }
     }
     
+    @Override
+    public String getColumnName(int columna) {
+        return columnas.get(columna);
+    }
 }

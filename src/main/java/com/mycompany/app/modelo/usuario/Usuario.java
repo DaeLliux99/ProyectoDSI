@@ -64,7 +64,7 @@ public class Usuario implements Serializable {
         if (this == obj) {
             return true;
         }
-        return (this.nombreUsuario.equals(((Usuario) obj).nombreUsuario) ||
+        return (this.nombreUsuario.equals(((Usuario) obj).nombreUsuario) &&
                 this.contraseña.equals(((Usuario) obj).contraseña));
     }
 

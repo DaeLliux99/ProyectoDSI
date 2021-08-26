@@ -16,4 +16,7 @@ public interface Vista {
     public Vista setModelo(Modelo modelo);
     
     public Vista setControlador(Controlador controlador);
+    
+    public void error(String error);
+    
 }

@@ -8,7 +8,7 @@ package com.mycompany.app.vista;
 import com.mycompany.app.controlador.Controlador;
 import com.mycompany.app.controlador.login.ControladorLogin;
 import com.mycompany.app.modelo.Modelo;
-import com.mycompany.app.modelo.usuario.ModeloUsuario;
+import com.mycompany.app.modelo.ModeloLogin;
 import com.mycompany.app.modelo.usuario.Usuario;
 import javax.swing.JOptionPane;
 
@@ -16,11 +16,11 @@ import javax.swing.JOptionPane;
  *
  * @author LEONARDO
  */
-public class Login extends javax.swing.JFrame implements Vista{
+public class VistaLogin extends javax.swing.JFrame implements Vista{
     /**
      * Creates new form Login
      */
-    public Login() {
+    public VistaLogin() {
         initComponents();
     }
 
@@ -102,7 +102,7 @@ public class Login extends javax.swing.JFrame implements Vista{
     
     @Override
     public Vista setModelo(Modelo modelo) {
-        this.modeloUsuario = (ModeloUsuario) modelo;
+        this.modeloUsuario = (ModeloLogin) modelo;
         return this;
     }
 
@@ -116,7 +116,12 @@ public class Login extends javax.swing.JFrame implements Vista{
         return new Usuario(textoUsuario.getText(), textoContraseña.getText());
     }
     
-    private ModeloUsuario modeloUsuario;
+    @Override
+    public void error(String error) {
+        JOptionPane.showMessageDialog(rootPane, error);
+    }
+    
+    private ModeloLogin modeloUsuario;
     private ControladorLogin controladorLogin;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIngresar;
@@ -128,6 +133,7 @@ public class Login extends javax.swing.JFrame implements Vista{
     private javax.swing.JPasswordField textoContraseña;
     private javax.swing.JTextField textoUsuario;
     // End of variables declaration//GEN-END:variables
+
 
 
 }

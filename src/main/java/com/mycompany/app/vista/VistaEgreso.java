@@ -5,6 +5,8 @@
  */
 package com.mycompany.app.vista;
 
+import com.mycompany.app.controlador.Controlador;
+import com.mycompany.app.modelo.Modelo;
 import com.mycompany.app.modelo.paquete.Paquete;
 import com.mycompany.app.modelo.producto.Producto;
 import java.util.List;
@@ -14,12 +16,12 @@ import java.util.ArrayList;
  *
  * @author LEONARDO
  */
-public class VentanaEgreso extends javax.swing.JFrame {
+public class VistaEgreso extends javax.swing.JFrame implements Vista{
 
     /**
      * Creates new form Ventana_Egreso
      */
-    public VentanaEgreso() {
+    public VistaEgreso() {
         paquetes = new ArrayList<>();
         paquetes.add(new Paquete("asd",new Producto(123, "Dildo"),20));
         initComponents();
@@ -188,4 +190,19 @@ public class VentanaEgreso extends javax.swing.JFrame {
     private javax.swing.JTextField textoCantidad;
     private javax.swing.JTextField textoCodigo;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Vista setModelo(Modelo modelo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Vista setControlador(Controlador controlador) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void error(String error) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
