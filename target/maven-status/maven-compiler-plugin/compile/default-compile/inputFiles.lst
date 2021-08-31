@@ -1,5 +1,6 @@
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/vista/VistaEgreso.java
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/controlador/Controlador.java
+/home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/controlador/egresos/ControladorEgreso.java
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/modelo/producto/ProductoDAO.java
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/modelo/ModeloEgreso.java
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/modelo/usuario/UsuarioDAO.java
@@ -15,5 +16,6 @@
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/vista/VistaIngreso.java
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/modelo/Modelo.java
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/controlador/login/ControladorLogin.java
+/home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/vista/VistaNotificada.java
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/modelo/paquete/Paquete.java
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/vista/Vista.java

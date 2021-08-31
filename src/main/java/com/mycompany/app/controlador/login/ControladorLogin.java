@@ -6,13 +6,16 @@
 package com.mycompany.app.controlador.login;
 
 import com.mycompany.app.controlador.Controlador;
+import com.mycompany.app.controlador.egresos.ControladorEgreso;
 import com.mycompany.app.controlador.ingresos.ControladorIngreso;
 import com.mycompany.app.modelo.Modelo;
+import com.mycompany.app.modelo.ModeloEgreso;
 import com.mycompany.app.modelo.ModeloIngreso;
 import com.mycompany.app.modelo.ModeloLogin;
 import com.mycompany.app.modelo.usuario.Usuario;
 import com.mycompany.app.vista.VistaLogin;
 import com.mycompany.app.vista.Vista;
+import com.mycompany.app.vista.VistaEgreso;
 import com.mycompany.app.vista.VistaIngreso;
 
 /**
@@ -73,6 +76,14 @@ public class ControladorLogin implements Controlador{
     }
     
     private void cambiarVistaEgreso(){
-        System.out.println("Gaaaaaa");
+        login.setVisible(false);
+        System.out.println("Loggeado correctamente!");
+        ModeloEgreso me = new ModeloEgreso().cargar();
+        VistaEgreso vi = new VistaEgreso();
+        ControladorEgreso ci = new ControladorEgreso();
+        me.setVista(vi);
+        ci.setModelo(me).setVista(vi);
+        vi.setControlador(ci).setModelo(me);
+        vi.mostrar();
     }
 }

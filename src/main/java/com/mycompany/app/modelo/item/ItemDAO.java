@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.app.vista;
+package com.mycompany.app.modelo.item;
 
 /**
  *
  * @author esteban
  */
-public interface VistaNotificada {
-    public void listaPaqueteCambiada();
+public class ItemDAO {
+    
 }

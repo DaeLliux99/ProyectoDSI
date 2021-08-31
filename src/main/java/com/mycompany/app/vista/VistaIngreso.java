@@ -23,7 +23,6 @@ import javax.swing.JOptionPane;
 public class VistaIngreso extends javax.swing.JFrame implements Vista {
 
     public VistaIngreso() {
-        paquetes = new ArrayList<>();
         initComponents();
     }
 
@@ -102,7 +101,7 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
                 .addGap(24, 24, 24))
         );
 
-        tablaProductos.setModel(new TablaPaquetes(paquetes));
+        tablaProductos.setModel(new TablaPaquetes());
         jScrollPane1.setViewportView(tablaProductos);
 
         jLabel4.setText("INGRESO:");
@@ -158,7 +157,6 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonIngresarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarPaqueteActionPerformed
-        System.out.println(paquetes.size());
         controladorIngreso.registrarPaquete();
     }//GEN-LAST:event_botonIngresarPaqueteActionPerformed
 
@@ -198,13 +196,11 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
     }
     
     public void listaPaqueteCambiada() {
-        this.paquetes = modeloIngreso.getPaquetes();
-        tablaProductos.setModel(new TablaPaquetes(paquetes));
+        tablaProductos.setModel(new TablaPaquetes(modeloIngreso.getPaquetes()));
     }
     
     private ModeloIngreso modeloIngreso;
     private ControladorIngreso controladorIngreso;
-    private List<Paquete> paquetes;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIngresarPaquete;

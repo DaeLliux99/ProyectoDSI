@@ -8,6 +8,7 @@ package com.mycompany.app.vista.tablas;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import com.mycompany.app.modelo.paquete.Paquete;
+import java.util.ArrayList;
 import java.util.Arrays;
 /**
  *
@@ -17,6 +18,11 @@ public class TablaPaquetes extends AbstractTableModel{
     
     private List<String> columnas;
     private List<Paquete> paquetes;
+    
+    public TablaPaquetes() {
+        columnas = Arrays.asList("Item", "Codigo", "Nombre", "Cantidad");
+        paquetes = new ArrayList<>();
+    }
     
     public TablaPaquetes(List<Paquete> paquetes) {
         columnas = Arrays.asList("Item", "Codigo", "Nombre", "Cantidad");

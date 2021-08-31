@@ -1,4 +1,5 @@
 com/mycompany/app/modelo/usuario/UsuarioDAO.class
+com/mycompany/app/vista/VistaNotificada.class
 com/mycompany/app/App.class
 com/mycompany/app/controlador/ingresos/ControladorIngreso.class
 com/mycompany/app/vista/VistaLogin.class
@@ -14,9 +15,9 @@ com/mycompany/app/modelo/producto/ProductoDAO.class
 com/mycompany/app/modelo/paquete/PaqueteDAO.class
 com/mycompany/app/vista/VistaLogin$1.class
 com/mycompany/app/modelo/ModeloLogin.class
-com/mycompany/app/vista/VistaEgreso$1.class
 com/mycompany/app/modelo/ModeloEgreso.class
 com/mycompany/app/modelo/ModeloIngreso.class
 com/mycompany/app/vista/VistaEgreso.class
 com/mycompany/app/controlador/login/ControladorLogin.class
+com/mycompany/app/controlador/egresos/ControladorEgreso.class
 com/mycompany/app/vista/Vista.class

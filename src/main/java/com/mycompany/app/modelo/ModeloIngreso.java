@@ -22,12 +22,14 @@ public class ModeloIngreso implements Modelo {
     private VistaIngreso vi;
     private List <Producto> productos;
     private List <Paquete> paquetes;
+    private List <Paquete> recientes;
     private ProductoDAO pdao;
     private PaqueteDAO qdao;
     
     public ModeloIngreso() {
         this.productos = new ArrayList<>();
         this.paquetes = new ArrayList<>();
+        this.recientes = new ArrayList<>();
         pdao = new ProductoDAO();
         qdao = new PaqueteDAO();
     }
@@ -52,6 +54,7 @@ public class ModeloIngreso implements Modelo {
         for (Producto p: productos) {
             if (p.equals(producto)) {
                 this.paquetes.add(paquete.setProducto(p));
+                this.recientes.add(paquete.setProducto(p));
                 qdao.guardar(paquetes);
                 vi.listaPaqueteCambiada();
                 return true;
@@ -62,6 +65,10 @@ public class ModeloIngreso implements Modelo {
     
     public List<Paquete> getPaquetes() {
         return this.paquetes;
+    }
+    
+    public List<Paquete> getRecientes() {
+        return this.recientes;
     }
     
 }

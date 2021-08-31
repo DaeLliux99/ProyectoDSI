@@ -24,10 +24,6 @@ public class ControladorIngreso implements Controlador{
     public ControladorIngreso() {
         
     }
-    
-    public ControladorIngreso(VistaIngreso vi) {
-        this.vistaIngreso = vi;
-    }
 
     @Override
     public Controlador setVista(Vista vista) {
