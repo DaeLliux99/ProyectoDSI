@@ -38,14 +38,15 @@ public class ControladorIngreso implements Controlador{
     }
     
     public void registrarPaquete() {
-        Producto producto = vistaIngreso.getProducto();
-        Paquete paquete = vistaIngreso.getPaquete();
-        if (producto.getNombre().isEmpty()) {
-            vistaIngreso.error("Campos vacios");
-        } else if (!modeloIngreso.agregarPaquete(paquete, producto)) {
-            vistaIngreso.error("No se pudo agregar paquete");
+        boolean vacio = vistaIngreso.obtenerCodigoPaquete().isEmpty() || 
+                vistaIngreso.obtenerNombreProducto().isEmpty() || 
+                vistaIngreso.obtenerCantidadPaquete().isEmpty();
+        if (vacio) {
+            vistaIngreso.aviso("Campos vacios");
+        } else if (!modeloIngreso.agregarPaquete()) {
+            vistaIngreso.aviso("No se pudo agregar paquete");
         } else {
-            System.out.println("Paquete registrado con exito");
+            vistaIngreso.aviso("Paquete registrado con exito");
         }
         
     }

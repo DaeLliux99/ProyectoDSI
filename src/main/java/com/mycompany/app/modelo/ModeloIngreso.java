@@ -48,10 +48,13 @@ public class ModeloIngreso implements Modelo {
         return this;
     }
     
-    public boolean agregarPaquete(Paquete paquete, Producto producto) {
-        producto = pdao.seleccionarProducto(producto.getNombre());
-        if (qdao.seleccionarPaquete(paquete.getCodigo()) != null) return false;
+    public boolean agregarPaquete() {
+        Paquete paquete = new Paquete();
+        Producto producto = pdao.seleccionarProducto(vi.obtenerNombreProducto());
+        if (qdao.seleccionarPaquete(vi.obtenerCodigoPaquete()) != null) return false;
         if (producto == null) return false;
+        paquete.setCodigo(vi.obtenerCodigoPaquete());
+        paquete.setCantidad(Integer.parseInt(vi.obtenerCantidadPaquete()));
         paquete.setProducto(producto);
         paquete.setUsuario(usuario);
         qdao.insertarPaquete(paquete);

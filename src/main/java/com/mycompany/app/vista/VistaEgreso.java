@@ -135,7 +135,7 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
 
     private void botonVerificarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerificarPedidoActionPerformed
         controladorEgreso.guardarPedido();
-        //controladorEgreso.reiniciarAtributos();
+        controladorEgreso.reiniciarAtributos();
     }//GEN-LAST:event_botonVerificarPedidoActionPerformed
 
     private void botonCancelarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarPedidoActionPerformed
@@ -156,11 +156,13 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
     }
 
     @Override
-    public void error(String error) {
+    public void aviso(String error) {
         JOptionPane.showMessageDialog(rootPane, error);
     }
     
     public void listaItemCambiada() {
+        this.textoCantidad.setText("");
+        this.textoCantidad.setText("");
         tablaItems.setModel(new TablaItems(modeloEgreso.getItems()));
     }
     
@@ -168,8 +170,8 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
         this.setVisible(true);
     }
     
-    public Integer obtenerCantidadItem(){
-        return Integer.parseInt(this.textoCantidad.getText());
+    public String obtenerCantidadItem(){
+        return this.textoCantidad.getText();
     }
     
     public String obtenerCodigoProducto() {

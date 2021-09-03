@@ -117,7 +117,7 @@ public class VistaLogin extends javax.swing.JFrame implements Vista{
     }
     
     @Override
-    public void error(String error) {
+    public void aviso(String error) {
         JOptionPane.showMessageDialog(rootPane, error);
     }
     

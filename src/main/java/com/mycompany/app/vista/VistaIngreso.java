@@ -178,21 +178,20 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
     }
 
     @Override
-    public void error(String error) {
+    public void aviso(String error) {
         JOptionPane.showMessageDialog(rootPane, error);
     }
     
-    public Producto getProducto() {
-        return new Producto()
-                //.setCodigo(Integer.getInteger(textoCodigoProducto.getText()))
-                .setNombre(textoNombreProducto.getText());
+    public String obtenerCodigoPaquete() {
+        return this.textoCodigoPaquete.getText();
     }
     
-    public Paquete getPaquete() {
-        return new Paquete()
-                //.setCodigo(Integer.getInteger(textoCodigoProducto.getText()))
-                .setCodigo(textoCodigoPaquete.getText())
-                .setCantidad(Integer.parseInt(textoCantidadPaquete.getText()));
+    public String obtenerNombreProducto() {
+        return this.textoNombreProducto.getText();
+    }
+    
+    public String obtenerCantidadPaquete() {
+        return this.textoCantidadPaquete.getText();
     }
     
     public void listaPaqueteCambiada() {

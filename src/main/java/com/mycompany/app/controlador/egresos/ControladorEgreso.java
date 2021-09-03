@@ -32,10 +32,10 @@ public class ControladorEgreso implements Controlador{
     }
     
     public void agregarItem() {
-        if (ve.obtenerCodigoProducto().isEmpty()) {
-            ve.error("Campos vacios");
+        if (ve.obtenerCodigoProducto().isEmpty() || ve.obtenerCantidadItem().isEmpty()) {
+            ve.aviso("Campos vacios");
         } else if (!me.agregarItem()) {
-            ve.error("No se pudo ingresar/actualizar el item");
+            ve.aviso("No se pudo ingresar/actualizar el item");
         } else {
             System.out.println("Item agregado correctamente");
         }
@@ -43,12 +43,16 @@ public class ControladorEgreso implements Controlador{
 
     public void guardarPedido() {
         if (me.getPedido().getItems().isEmpty()) {
-            ve.error("Pedido vacio, no se puede registrar");
+            ve.aviso("Pedido vacio, no se puede registrar");
         } else if (!me.guardarPedido()) {
-            ve.error("No se pudo realizar el pedido");
+            ve.aviso("No se pudo realizar el pedido");
         } else {
-            System.out.println("Pedido registrado con éxito");
+            ve.aviso("Pedido registrado con éxito");
         }
+    }
+
+    public void reiniciarAtributos() {
+        me.reiniciarAtributos();
     }
     
 }

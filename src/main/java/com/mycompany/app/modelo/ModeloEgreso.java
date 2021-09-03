@@ -59,7 +59,7 @@ public class ModeloEgreso implements Modelo{
     }
 
     public boolean agregarItem() {
-        Integer cantidad = ve.obtenerCantidadItem();
+        Integer cantidad = Integer.parseInt(ve.obtenerCantidadItem());
         String codigo = ve.obtenerCodigoProducto();
         Paquete paquete;
         Producto producto = productoDAO.seleccionarProductoXCodigo(codigo);
@@ -122,6 +122,12 @@ public class ModeloEgreso implements Modelo{
             }
             itemDAO.insertarItem(i);
         }
+        reiniciarAtributos();
+        ve.listaItemCambiada();
         return true;
+    }
+
+    public void reiniciarAtributos() {
+        this.pedido = new Pedido();
     }
 }

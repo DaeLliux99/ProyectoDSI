@@ -13,10 +13,11 @@ import com.mycompany.app.modelo.Modelo;
  * @author esteban
  */
 public interface Vista {
+
     public Vista setModelo(Modelo modelo);
-    
+
     public Vista setControlador(Controlador controlador);
-    
-    public void error(String error);
-    
+
+    public void aviso(String error);
+
 }

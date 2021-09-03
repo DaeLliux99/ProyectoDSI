@@ -31,7 +31,7 @@ public class PaqueteDAO {
     public PaqueteDAO() {
         data = "paquetes.bin";
     }
-    
+    /*
     public List <Paquete> obtenerPaquetes() {
         List <Paquete> paquetes;
         try {
@@ -64,6 +64,7 @@ public class PaqueteDAO {
         }
         return null;
     }
+    */
     
     public List<Paquete> seleccionar(){
         Connection conn = null;
@@ -240,6 +241,7 @@ public class PaqueteDAO {
         }
     }
     
+    /*
     public void guardar(List <Paquete> paquetes) {
         try {
             FileOutputStream fos = new FileOutputStream(data);
@@ -252,4 +254,5 @@ public class PaqueteDAO {
             e.printStackTrace(System.out);
         }
     }
+    */
 }

@@ -52,13 +52,13 @@ public class ControladorLogin implements Controlador{
         Usuario usuario = login.getUsuario();
         int swapVista;
         if (usuario.getNombreUsuario().isEmpty() || usuario.getContraseña().isEmpty()) {
-            login.error("Nombre de usuario o contraseña vacios");
+            login.aviso("Nombre de usuario o contraseña vacios");
             return;
         }
         swapVista = modeloUsuario.verificarCuenta(usuario);
         usuario = modeloUsuario.getUsuario();
         switch (swapVista) {
-            case 0: login.error("Usuario o contraseña incorrectos"); break;
+            case 0: login.aviso("Usuario o contraseña incorrectos"); break;
             case 1: cambiarVistaIngreso(usuario); break;
             case 2: cambiarVistaEgreso(usuario); break;
         }
