@@ -9,6 +9,7 @@ import com.mycompany.app.modelo.paquete.Paquete;
 import com.mycompany.app.modelo.paquete.PaqueteDAO;
 import com.mycompany.app.modelo.producto.Producto;
 import com.mycompany.app.modelo.producto.ProductoDAO;
+import com.mycompany.app.modelo.usuario.Usuario;
 import com.mycompany.app.vista.VistaIngreso;
 import com.mycompany.app.vista.Vista;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class ModeloIngreso implements Modelo {
     private List <Paquete> recientes;
     private ProductoDAO pdao;
     private PaqueteDAO qdao;
+    private Usuario usuario;
     
     public ModeloIngreso() {
         this.productos = new ArrayList<>();
@@ -42,25 +44,20 @@ public class ModeloIngreso implements Modelo {
 
     @Override
     public ModeloIngreso cargar() {
-        productos = pdao.obtenerProductos();
-        paquetes = qdao.obtenerPaquetes();
+        paquetes = qdao.seleccionar();
         return this;
     }
     
     public boolean agregarPaquete(Paquete paquete, Producto producto) {
-        if (paquetes.contains(paquete)) {
-            return false;
-        }
-        for (Producto p: productos) {
-            if (p.equals(producto)) {
-                this.paquetes.add(paquete.setProducto(p));
-                this.recientes.add(paquete.setProducto(p));
-                qdao.guardar(paquetes);
-                vi.listaPaqueteCambiada();
-                return true;
-            }
-        }
-        return false;
+        producto = pdao.seleccionarProducto(producto.getNombre());
+        if (qdao.seleccionarPaquete(paquete.getCodigo()) != null) return false;
+        if (producto == null) return false;
+        paquete.setProducto(producto);
+        paquete.setUsuario(usuario);
+        qdao.insertarPaquete(paquete);
+        paquetes = qdao.seleccionar();
+        vi.listaPaqueteCambiada();
+        return true;
     }
     
     public List<Paquete> getPaquetes() {
@@ -70,5 +67,13 @@ public class ModeloIngreso implements Modelo {
     public List<Paquete> getRecientes() {
         return this.recientes;
     }
-    
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public ModeloIngreso setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+        return this;
+    }
 }

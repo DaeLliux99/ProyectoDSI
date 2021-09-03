@@ -31,6 +31,24 @@ public class ControladorEgreso implements Controlador{
         return this;
     }
     
-    
+    public void agregarItem() {
+        if (ve.obtenerCodigoProducto().isEmpty()) {
+            ve.error("Campos vacios");
+        } else if (!me.agregarItem()) {
+            ve.error("No se pudo ingresar/actualizar el item");
+        } else {
+            System.out.println("Item agregado correctamente");
+        }
+    }
+
+    public void guardarPedido() {
+        if (me.getPedido().getItems().isEmpty()) {
+            ve.error("Pedido vacio, no se puede registrar");
+        } else if (!me.guardarPedido()) {
+            ve.error("No se pudo realizar el pedido");
+        } else {
+            System.out.println("Pedido registrado con éxito");
+        }
+    }
     
 }

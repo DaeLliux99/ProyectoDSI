@@ -23,9 +23,12 @@ public class ModeloLogin implements Modelo{
     private VistaLogin login;
     private VistaEgreso ve;
     private VistaIngreso vi;
-    List <Usuario> usuarios;
+    private List <Usuario> usuarios;
+    private UsuarioDAO udao;
+    private Usuario usuario;
     
     public ModeloLogin() {
+        udao = new UsuarioDAO();
         usuarios = new ArrayList<>();
     }
     
@@ -38,22 +41,23 @@ public class ModeloLogin implements Modelo{
     @Override
     public ModeloLogin cargar() {
         //Aca se cargara un archivo para los usuarios
-        UsuarioDAO udao = new UsuarioDAO();
-        usuarios = udao.obtenerUsuarios();
+        //usuarios = udao.obtenerUsuarios();
         return this;
     }
 
     public int verificarCuenta(Usuario anonimo) {
-        for (Usuario u: usuarios) {
-            if (anonimo.equals(u)) {
-                if (u.getCargo().equals("almacenero")) {
-                    return 1;
-                }
-                if (u.getCargo().equals("cajero")) {
-                    return 2;
-                }
-            }
-        }
+        usuario = udao.obtenerUsuario(anonimo);
+        if (usuario == null) return 0;
+        
+        if (usuario.getCargo().equals("almacenero")) return 1;
+
+        if (usuario.getCargo().equals("cajero")) return 2;
+        
         return 0;
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+    
 }

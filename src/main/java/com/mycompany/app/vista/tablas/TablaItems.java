@@ -20,12 +20,12 @@ public class TablaItems extends AbstractTableModel{
     private List<Item> items;
     
     public TablaItems() {
-        columnas = Arrays.asList("ID", "Cod. Paquete", "Producto", "Cantidad");
+        columnas = Arrays.asList("ID", "Producto", "Cantidad");
         items = new ArrayList<>();
     }
     
     public TablaItems(List<Item> items) {
-        columnas = Arrays.asList("ID", "Cod. Paquete", "Producto", "Cantidad");
+        columnas = Arrays.asList("ID", "Producto", "Cantidad");
         this.items = items;
         //System.out.println(columnas.size());
         //System.out.println(items.size());
@@ -49,9 +49,8 @@ public class TablaItems extends AbstractTableModel{
         }
         switch (columnIndex) {
             case 0: return rowIndex + 1;
-            case 1: return item.getId();
-            case 2: return item.getPaquete().getProducto().getNombre();
-            case 3: return item.getCantidad();
+            case 1: return item.getProducto().getNombre();
+            case 2: return item.getCantidad();
             default: return item;
         }
     }

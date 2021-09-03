@@ -13,12 +13,29 @@ import java.io.Serializable;
  */
 public class Usuario implements Serializable {
 
+    private Integer id;
     private String nombreUsuario;
     private String contraseña;
     private String cargo;
 
     public Usuario() {
+        
+    }
 
+    public Usuario(Integer id, String nombreUsuario, String contraseña, String cargo) {
+        this.id = id;
+        this.nombreUsuario = nombreUsuario;
+        this.contraseña = contraseña;
+        this.cargo = cargo;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Usuario setId(Integer id) {
+        this.id = id;
+        return this;
     }
 
     public Usuario(String nombreUsuario, String contraseña) {

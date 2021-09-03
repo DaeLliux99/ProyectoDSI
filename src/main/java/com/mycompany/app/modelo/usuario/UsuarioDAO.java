@@ -5,12 +5,14 @@
  */
 package com.mycompany.app.modelo.usuario;
 
+import static com.mycompany.app.modelo.conexion.Conexion.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -56,6 +58,40 @@ public class UsuarioDAO {
             System.out.println("Error de entrada/salida al cargar los datos");
         } catch (ClassNotFoundException ex) {
             System.out.println("El fichero contiene datos erroneos");
+        }
+        return null;
+    }
+    
+    public Usuario obtenerUsuario(Usuario usuario) {
+        //Esta funcion hace un SELECT y retorna el primer paquete que encuentra segun el codigo del producto
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Usuario u = null;
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement("SELECT * FROM usuario WHERE nombreUsuario = ? and contraseña = ?");
+            stmt.setString(1, usuario.getNombreUsuario());
+            stmt.setString(2, usuario.getContraseña());
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Integer idUsuario = rs.getInt("idUsuario");
+                String nombreUsuario = rs.getNString("nombreUsuario");
+                String contraseña = rs.getNString("contraseña");
+                String cargo = rs.getNString("cargo");
+                u = new Usuario(idUsuario, nombreUsuario, contraseña, cargo);
+                return u;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            try {
+                close(rs);
+                close(stmt);
+                close(conn);
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
         }
         return null;
     }

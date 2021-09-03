@@ -56,17 +56,18 @@ public class ControladorLogin implements Controlador{
             return;
         }
         swapVista = modeloUsuario.verificarCuenta(usuario);
+        usuario = modeloUsuario.getUsuario();
         switch (swapVista) {
             case 0: login.error("Usuario o contraseña incorrectos"); break;
-            case 1: cambiarVistaIngreso(); break;
-            case 2: cambiarVistaEgreso(); break;
+            case 1: cambiarVistaIngreso(usuario); break;
+            case 2: cambiarVistaEgreso(usuario); break;
         }
     }
     
-    private void cambiarVistaIngreso(){
+    private void cambiarVistaIngreso(Usuario usuario){
         login.setVisible(false);
         System.out.println("Loggeado correctamente!");
-        ModeloIngreso mi = new ModeloIngreso().cargar();
+        ModeloIngreso mi = new ModeloIngreso().cargar().setUsuario(usuario);
         VistaIngreso vi = new VistaIngreso();
         ControladorIngreso ci = new ControladorIngreso();
         mi.setVista(vi);
@@ -75,10 +76,10 @@ public class ControladorLogin implements Controlador{
         vi.mostrar();
     }
     
-    private void cambiarVistaEgreso(){
+    private void cambiarVistaEgreso(Usuario usuario){
         login.setVisible(false);
         System.out.println("Loggeado correctamente!");
-        ModeloEgreso me = new ModeloEgreso().cargar();
+        ModeloEgreso me = new ModeloEgreso().cargar().setUsuario(usuario);
         VistaEgreso vi = new VistaEgreso();
         ControladorEgreso ci = new ControladorEgreso();
         me.setVista(vi);

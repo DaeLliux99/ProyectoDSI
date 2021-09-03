@@ -27,6 +27,12 @@ public class Pedido {
     public Pedido() {
         items = new ArrayList<>();
     }
+
+    public Pedido(Integer id, Usuario usuario) {
+        items = new ArrayList<>();
+        this.id = id;
+        this.usuario = usuario;
+    }
     
     public Integer getId() {
         return id;
@@ -52,5 +58,8 @@ public class Pedido {
         this.usuario = usuario;
     }
     
+    public void agregarItem(Item item) {
+        this.items.add(item);
+    }
     
 }

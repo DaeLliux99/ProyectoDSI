@@ -6,6 +6,7 @@
 package com.mycompany.app.modelo.paquete;
 
 import com.mycompany.app.modelo.producto.Producto;
+import com.mycompany.app.modelo.usuario.Usuario;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -14,9 +15,19 @@ import java.util.Objects;
  * @author esteban
  */
 public class Paquete implements Serializable{
+    private Integer idPaquete;
     private String codigo;
+    private Usuario usuario;
     private Producto producto;
     private Integer cantidad;
+
+    public Paquete(Integer idPaquete, String codigo, Usuario usuario, Producto producto, Integer cantidad) {
+        this.idPaquete = idPaquete;
+        this.codigo = codigo;
+        this.usuario = usuario;
+        this.producto = producto;
+        this.cantidad = cantidad;
+    }
 
     public Paquete(String item, Producto producto, Integer cantidad) {
         this.codigo = item;
@@ -54,6 +65,24 @@ public class Paquete implements Serializable{
         this.cantidad = cantidad;
         return this;
     }
+
+    public Integer getIdPaquete() {
+        return idPaquete;
+    }
+
+    public void setIdPaquete(Integer idPaquete) {
+        this.idPaquete = idPaquete;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
+    
 
     @Override
     public int hashCode() {

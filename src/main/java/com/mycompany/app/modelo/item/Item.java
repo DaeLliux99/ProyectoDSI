@@ -7,6 +7,7 @@ package com.mycompany.app.modelo.item;
 
 import com.mycompany.app.modelo.paquete.Paquete;
 import com.mycompany.app.modelo.pedido.Pedido;
+import com.mycompany.app.modelo.producto.Producto;
 import java.io.Serializable;
 
 /**
@@ -15,7 +16,7 @@ import java.io.Serializable;
  */
 public class Item implements Serializable{
     private Integer id;
-    private Paquete paquete;
+    private Producto producto;
     private Integer cantidad;
     private Pedido pedido;
     
@@ -23,9 +24,17 @@ public class Item implements Serializable{
         
     }
     
-    public Item(Paquete paquete, Integer cantidad) {
-        this.paquete = paquete;
+    public Item(Producto producto, Integer cantidad, Pedido pedido) {
+        this.producto = producto;
         this.cantidad = cantidad;
+        this.pedido = pedido;
+    }
+
+    public Item(Integer id, Producto producto, Integer cantidad, Pedido pedido) {
+        this.id = id;
+        this.producto = producto;
+        this.cantidad = cantidad;
+        this.pedido = pedido;
     }
 
     public Integer getId() {
@@ -37,15 +46,14 @@ public class Item implements Serializable{
         return this;
     }
 
-    public Paquete getPaquete() {
-        return paquete;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public Item setPaquete(Paquete paquete) {
-        this.paquete = paquete;
-        return this;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
-
+    
     public Integer getCantidad() {
         return cantidad;
     }

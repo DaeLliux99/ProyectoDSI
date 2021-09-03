@@ -59,12 +59,27 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         botonAgregar.setText("AGREGAR");
+        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarActionPerformed(evt);
+            }
+        });
         jPanel1.add(botonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 50, 90, 30));
 
         botonVerificarPedido.setText("VERIFICAR PEDIDO");
+        botonVerificarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerificarPedidoActionPerformed(evt);
+            }
+        });
         jPanel1.add(botonVerificarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 130, 40));
 
         botonCancelarPedido.setText("CANCERLA PEDIDO");
+        botonCancelarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarPedidoActionPerformed(evt);
+            }
+        });
         jPanel1.add(botonCancelarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 440, -1, 40));
 
         textoCodigo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -114,6 +129,19 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
+        controladorEgreso.agregarItem();
+    }//GEN-LAST:event_botonAgregarActionPerformed
+
+    private void botonVerificarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerificarPedidoActionPerformed
+        controladorEgreso.guardarPedido();
+        //controladorEgreso.reiniciarAtributos();
+    }//GEN-LAST:event_botonVerificarPedidoActionPerformed
+
+    private void botonCancelarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarPedidoActionPerformed
+        //controladorEgreso.reiniciarAtributos();
+    }//GEN-LAST:event_botonCancelarPedidoActionPerformed
+
     @Override
     public Vista setModelo(Modelo modelo) {
         this.modeloEgreso = (ModeloEgreso) modelo;
@@ -140,6 +168,14 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
         this.setVisible(true);
     }
     
+    public Integer obtenerCantidadItem(){
+        return Integer.parseInt(this.textoCantidad.getText());
+    }
+    
+    public String obtenerCodigoProducto() {
+        return this.textoCodigo.getText();
+    }
+    
     private ModeloEgreso modeloEgreso;
     private ControladorEgreso controladorEgreso;
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -158,6 +194,4 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
     private javax.swing.JTextField textoCantidad;
     private javax.swing.JTextField textoCodigo;
     // End of variables declaration//GEN-END:variables
-
-
 }

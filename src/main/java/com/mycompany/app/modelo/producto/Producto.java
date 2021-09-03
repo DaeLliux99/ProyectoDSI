@@ -13,23 +13,40 @@ import java.util.Objects;
  * @author esteban
  */
 public class Producto implements Serializable{
-    private Integer codigo;
+    
+    private Integer id;
+    private String codigo;
     private String nombre;
 
     public Producto() {
         
     }
     
-    public Producto(Integer codigo, String nombre) {
+    public Producto(Integer id, String codigo, String nombre) {
+        this.id = id;
+        this.codigo = codigo;
+        this.nombre = nombre;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Producto setId(Integer id) {
+        this.id = id;
+        return this;
+    }
+    
+    public Producto(String codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
     }
     
-    public Integer getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public Producto setCodigo(Integer codigo) {
+    public Producto setCodigo(String codigo) {
         this.codigo = codigo;
         return this;
     }
