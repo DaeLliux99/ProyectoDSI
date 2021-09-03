@@ -12,6 +12,7 @@ import com.mycompany.app.modelo.Modelo;
 import com.mycompany.app.modelo.ModeloEgreso;
 import com.mycompany.app.modelo.paquete.Paquete;
 import com.mycompany.app.modelo.producto.Producto;
+import com.mycompany.app.vista.tablas.TablaFactory;
 import com.mycompany.app.vista.tablas.TablaItems;
 import java.util.List;
 import com.mycompany.app.vista.tablas.TablaPaquetes;
@@ -89,6 +90,11 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
         jPanel1.add(textoCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 190, -1));
 
         botonCerrarSesion.setText("CERRAR SESION");
+        botonCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCerrarSesionActionPerformed(evt);
+            }
+        });
         jPanel1.add(botonCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 430, 130, 40));
 
         jLabel1.setText("Código del producto:");
@@ -101,7 +107,7 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
         jLabel3.setText("Cantidad del producto:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, -1, -1));
 
-        tablaItems.setModel(new TablaPaquetes());
+        tablaItems.setModel(TablaFactory.crearTabla("items"));
         jScrollPane2.setViewportView(tablaItems);
         if (tablaItems.getColumnModel().getColumnCount() > 0) {
             tablaItems.getColumnModel().getColumn(0).setPreferredWidth(10);
@@ -139,8 +145,13 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
     }//GEN-LAST:event_botonVerificarPedidoActionPerformed
 
     private void botonCancelarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarPedidoActionPerformed
-        //controladorEgreso.reiniciarAtributos();
+        controladorEgreso.reiniciarAtributos();
+        this.listaItemCambiada();
     }//GEN-LAST:event_botonCancelarPedidoActionPerformed
+
+    private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
+        controladorEgreso.cerrarSesion();
+    }//GEN-LAST:event_botonCerrarSesionActionPerformed
 
     @Override
     public Vista setModelo(Modelo modelo) {
@@ -163,7 +174,7 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
     public void listaItemCambiada() {
         this.textoCantidad.setText("");
         this.textoCantidad.setText("");
-        tablaItems.setModel(new TablaItems(modeloEgreso.getItems()));
+        tablaItems.setModel(TablaFactory.crearTabla("items", modeloEgreso.getItems()));
     }
     
     public void mostrar() {

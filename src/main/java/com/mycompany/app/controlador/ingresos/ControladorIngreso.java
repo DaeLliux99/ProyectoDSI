@@ -6,12 +6,15 @@
 package com.mycompany.app.controlador.ingresos;
 
 import com.mycompany.app.controlador.Controlador;
+import com.mycompany.app.controlador.login.ControladorLogin;
 import com.mycompany.app.modelo.Modelo;
 import com.mycompany.app.modelo.ModeloIngreso;
+import com.mycompany.app.modelo.ModeloLogin;
 import com.mycompany.app.modelo.paquete.Paquete;
 import com.mycompany.app.modelo.producto.Producto;
 import com.mycompany.app.vista.VistaIngreso;
 import com.mycompany.app.vista.Vista;
+import com.mycompany.app.vista.VistaLogin;
 
 /**
  *
@@ -48,6 +51,16 @@ public class ControladorIngreso implements Controlador{
         } else {
             vistaIngreso.aviso("Paquete registrado con exito");
         }
-        
+    }
+    
+        public void cerrarSesion() {
+        this.vistaIngreso.setVisible(false);
+        ModeloLogin mu = new ModeloLogin().cargar();
+        VistaLogin login = new VistaLogin();
+        ControladorLogin cl = new ControladorLogin();
+        mu.setVista(login);
+        cl.setModelo(mu).setVista(login);
+        login.setControlador(cl).setModelo(mu);
+        login.mostrar();
     }
 }

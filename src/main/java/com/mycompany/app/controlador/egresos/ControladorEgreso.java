@@ -6,10 +6,13 @@
 package com.mycompany.app.controlador.egresos;
 
 import com.mycompany.app.controlador.Controlador;
+import com.mycompany.app.controlador.login.ControladorLogin;
 import com.mycompany.app.modelo.Modelo;
 import com.mycompany.app.modelo.ModeloEgreso;
+import com.mycompany.app.modelo.ModeloLogin;
 import com.mycompany.app.vista.Vista;
 import com.mycompany.app.vista.VistaEgreso;
+import com.mycompany.app.vista.VistaLogin;
 
 /**
  *
@@ -53,6 +56,17 @@ public class ControladorEgreso implements Controlador{
 
     public void reiniciarAtributos() {
         me.reiniciarAtributos();
+    }
+
+    public void cerrarSesion() {
+        this.ve.setVisible(false);
+        ModeloLogin mu = new ModeloLogin().cargar();
+        VistaLogin login = new VistaLogin();
+        ControladorLogin cl = new ControladorLogin();
+        mu.setVista(login);
+        cl.setModelo(mu).setVista(login);
+        login.setControlador(cl).setModelo(mu);
+        login.mostrar();
     }
     
 }

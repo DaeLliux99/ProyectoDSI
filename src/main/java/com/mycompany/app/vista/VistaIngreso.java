@@ -11,6 +11,7 @@ import com.mycompany.app.modelo.Modelo;
 import com.mycompany.app.modelo.ModeloIngreso;
 import com.mycompany.app.modelo.paquete.Paquete;
 import com.mycompany.app.modelo.producto.Producto;
+import com.mycompany.app.vista.tablas.TablaFactory;
 import com.mycompany.app.vista.tablas.TablaPaquetes;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaProductos = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        botonCerrarSesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,12 +102,17 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
                 .addGap(24, 24, 24))
         );
 
-        tablaProductos.setModel(new TablaPaquetes());
+        tablaProductos.setModel(TablaFactory.crearTabla("paquetes"));
         jScrollPane1.setViewportView(tablaProductos);
 
         jLabel4.setText("INGRESO:");
 
-        jButton3.setText("Salir");
+        botonCerrarSesion.setText("Salir");
+        botonCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCerrarSesionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -123,7 +129,7 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
                         .addGap(40, 40, 40))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(322, 322, 322))
         );
         jPanel2Layout.setVerticalGroup(
@@ -134,7 +140,7 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(102, Short.MAX_VALUE))
         );
 
@@ -159,6 +165,10 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
     private void botonIngresarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarPaqueteActionPerformed
         controladorIngreso.registrarPaquete();
     }//GEN-LAST:event_botonIngresarPaqueteActionPerformed
+
+    private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
+        controladorIngreso.cerrarSesion();
+    }//GEN-LAST:event_botonCerrarSesionActionPerformed
 
     public void mostrar() {
         this.setVisible(true);
@@ -195,15 +205,15 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
     }
     
     public void listaPaqueteCambiada() {
-        tablaProductos.setModel(new TablaPaquetes(modeloIngreso.getPaquetes()));
+        tablaProductos.setModel(TablaFactory.crearTabla("paquetes", modeloIngreso.getPaquetes()));
     }
     
     private ModeloIngreso modeloIngreso;
     private ControladorIngreso controladorIngreso;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonCerrarSesion;
     private javax.swing.JButton botonIngresarPaquete;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
