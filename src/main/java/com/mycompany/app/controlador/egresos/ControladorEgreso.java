@@ -68,5 +68,10 @@ public class ControladorEgreso implements Controlador{
         login.setControlador(cl).setModelo(mu);
         login.mostrar();
     }
+
+    public void generarReporte() {
+        me.generarReporte();
+        ve.aviso("Se hizo el reporte en PDF satisfactoriamente!");
+    }
     
 }

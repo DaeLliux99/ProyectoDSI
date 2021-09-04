@@ -9,6 +9,8 @@ com/mycompany/app/modelo/pedido/PedidoDAO.class
 com/mycompany/app/modelo/Modelo.class
 com/mycompany/app/controlador/Controlador.class
 com/mycompany/app/vista/VistaIngreso$1.class
+com/mycompany/app/vista/tablas/TablaFactoryItems.class
+com/mycompany/app/vista/tablas/TablaFactoryPaquetes.class
 com/mycompany/app/vista/VistaLogin$1.class
 com/mycompany/app/modelo/ModeloLogin.class
 com/mycompany/app/vista/tablas/TablaItems.class
@@ -18,12 +20,17 @@ com/mycompany/app/modelo/ModeloEgreso.class
 com/mycompany/app/modelo/ModeloIngreso.class
 com/mycompany/app/modelo/item/ItemDAO.class
 com/mycompany/app/vista/VistaEgreso.class
+.netbeans_automatic_build
+com/mycompany/app/vista/VistaEgreso$4.class
 com/mycompany/app/controlador/ingresos/ControladorIngreso.class
+com/mycompany/app/vista/VistaIngreso$2.class
+com/mycompany/app/vista/tablas/TablaFactory.class
 com/mycompany/app/vista/VistaEgreso$2.class
 com/mycompany/app/modelo/producto/Producto.class
 com/mycompany/app/modelo/usuario/Usuario.class
 com/mycompany/app/modelo/producto/ProductoDAO.class
 com/mycompany/app/modelo/paquete/PaqueteDAO.class
+com/mycompany/app/vista/VistaEgreso$5.class
 com/mycompany/app/modelo/pedido/Pedido.class
 com/mycompany/app/modelo/item/Item.class
 com/mycompany/app/controlador/login/ControladorLogin.class

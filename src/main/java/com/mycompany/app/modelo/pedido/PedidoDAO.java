@@ -8,6 +8,8 @@ package com.mycompany.app.modelo.pedido;
 import static com.mycompany.app.modelo.conexion.Conexion.*;
 import com.mycompany.app.modelo.usuario.Usuario;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,7 +17,44 @@ import java.sql.*;
  */
 public class PedidoDAO {
     
-        public Pedido seleccionarPedido(int idUsuario) {
+    public List<Pedido> seleccionarPedido(int idUsuario) {
+        //Esta funcion hace un SELECT y retorna el primer paquete que encuentra segun el codigo del producto
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List <Pedido> pedidos = new ArrayList<>();
+        Pedido pedido = null;
+        
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement("SELECT * FROM vistaPedido WHERE idUsuario = ?");
+            stmt.setInt(1, idUsuario);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Integer idPedido = rs.getInt("idpedido");
+                String nombreUsuario = rs.getNString("nombreUsuario");
+                String contraseña = rs.getNString("contraseña");
+                String cargo = rs.getNString("cargo");
+                Usuario usuario = new Usuario(idUsuario, nombreUsuario, contraseña, cargo);
+                pedido = new Pedido(idPedido, usuario);
+                pedidos.add(pedido);
+                //System.out.println(paquete.getCodigo());
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            try {
+                close(rs);
+                close(stmt);
+                close(conn);
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
+        }
+        return pedidos;
+    }
+    
+    public Pedido seleccionarUltimoPedido(int idUsuario) {
         //Esta funcion hace un SELECT y retorna el primer paquete que encuentra segun el codigo del producto
         Connection conn = null;
         PreparedStatement stmt = null;

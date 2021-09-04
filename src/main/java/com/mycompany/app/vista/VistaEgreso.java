@@ -54,6 +54,7 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
         tablaItems = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        botonGenerarReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,7 +74,7 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
                 botonVerificarPedidoActionPerformed(evt);
             }
         });
-        jPanel1.add(botonVerificarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 130, 40));
+        jPanel1.add(botonVerificarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 150, 40));
 
         botonCancelarPedido.setText("CANCERLA PEDIDO");
         botonCancelarPedido.addActionListener(new java.awt.event.ActionListener() {
@@ -81,7 +82,7 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
                 botonCancelarPedidoActionPerformed(evt);
             }
         });
-        jPanel1.add(botonCancelarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 440, -1, 40));
+        jPanel1.add(botonCancelarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, -1, 40));
 
         textoCodigo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jPanel1.add(textoCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 190, -1));
@@ -95,7 +96,7 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
                 botonCerrarSesionActionPerformed(evt);
             }
         });
-        jPanel1.add(botonCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 430, 130, 40));
+        jPanel1.add(botonCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 440, 130, 40));
 
         jLabel1.setText("Código del producto:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
@@ -120,6 +121,14 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
 
         jLabel5.setText("Producto disponible");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+
+        botonGenerarReporte.setText("GENERAR REPORTE");
+        botonGenerarReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGenerarReporteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonGenerarReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 440, 150, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,6 +162,10 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
         controladorEgreso.cerrarSesion();
     }//GEN-LAST:event_botonCerrarSesionActionPerformed
 
+    private void botonGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarReporteActionPerformed
+        controladorEgreso.generarReporte();
+    }//GEN-LAST:event_botonGenerarReporteActionPerformed
+
     @Override
     public Vista setModelo(Modelo modelo) {
         this.modeloEgreso = (ModeloEgreso) modelo;
@@ -167,8 +180,8 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
     }
 
     @Override
-    public void aviso(String error) {
-        JOptionPane.showMessageDialog(rootPane, error);
+    public void aviso(String aviso) {
+        JOptionPane.showMessageDialog(rootPane, aviso);
     }
     
     public void listaItemCambiada() {
@@ -195,6 +208,7 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
     private javax.swing.JButton botonAgregar;
     private javax.swing.JButton botonCancelarPedido;
     private javax.swing.JButton botonCerrarSesion;
+    private javax.swing.JButton botonGenerarReporte;
     private javax.swing.JButton botonVerificarPedido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

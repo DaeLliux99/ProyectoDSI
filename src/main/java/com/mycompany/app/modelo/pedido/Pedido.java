@@ -38,8 +38,9 @@ public class Pedido {
         return id;
     }
 
-    public void setId(Integer id) {
+    public Pedido setId(Integer id) {
         this.id = id;
+        return this;
     }
 
     public List<Item> getItems() {

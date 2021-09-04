@@ -5,6 +5,8 @@
  */
 package com.mycompany.app.modelo;
 
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.*;
 import com.mycompany.app.modelo.item.Item;
 import com.mycompany.app.modelo.item.ItemDAO;
 import com.mycompany.app.modelo.paquete.Paquete;
@@ -16,8 +18,12 @@ import com.mycompany.app.modelo.producto.ProductoDAO;
 import com.mycompany.app.modelo.usuario.Usuario;
 import com.mycompany.app.vista.Vista;
 import com.mycompany.app.vista.VistaEgreso;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -102,7 +108,7 @@ public class ModeloEgreso implements Modelo{
     public boolean guardarPedido() {
         List<Item> items = pedido.getItems();
         pedidoDAO.insertarPedido(pedido);
-        pedido = pedidoDAO.seleccionarPedido(pedido.getUsuario().getId());
+        pedido = pedidoDAO.seleccionarUltimoPedido(pedido.getUsuario().getId());
         pedido.setItems(items);
         for (Item i: pedido.getItems()) {
             i.setPedido(pedido);
@@ -129,5 +135,45 @@ public class ModeloEgreso implements Modelo{
 
     public void reiniciarAtributos() {
         this.pedido = new Pedido();
+    }
+
+    public void generarReporte() {
+        List<Pedido> pedidos = pedidoDAO.seleccionarPedido(usuario.getId());
+        
+        Document documento = new Document();
+        try {
+            FileOutputStream ficheroPdf = new FileOutputStream("reportePedidos.pdf");
+            PdfWriter.getInstance(documento,ficheroPdf).setInitialLeading(20);
+            documento.open();
+            documento.add(new Paragraph("REPORTE DE PEDIDOS DE INVENTARIO",
+				FontFactory.getFont("arial",   // fuente
+				22,                            // tamaño
+				Font.ITALIC,                   // estilo
+				BaseColor.CYAN)));             // color
+            documento.add(new Paragraph("Los pedidos de "+ usuario.getNombreUsuario()+ " son:\n\n"));
+            for (Pedido p: pedidos) {
+                PdfPTable tabla = new PdfPTable(4);
+                p.setItems(itemDAO.seleccionar(p.getId()));
+                documento.add(new Paragraph("Pedido numero: "+p.getId()+"\n\n"));
+                tabla.addCell("ID");
+                tabla.addCell("Cod. Producto");
+                tabla.addCell("Producto");
+                tabla.addCell("Cantidad");
+                for (Item i: p.getItems()) {
+                    tabla.addCell(i.getId() +"");
+                    tabla.addCell(i.getProducto().getCodigo() +"");
+                    tabla.addCell(i.getProducto().getNombre() +"");
+                    tabla.addCell(i.getCantidad() +"");
+                }
+                documento.add(tabla);
+                documento.add(new Paragraph("\n\n"));
+            }
+            documento.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace(System.out);
+        } catch (DocumentException ex) {
+            ex.printStackTrace(System.out);
+        }
+        
     }
 }

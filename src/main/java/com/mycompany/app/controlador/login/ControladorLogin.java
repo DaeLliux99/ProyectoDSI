@@ -61,6 +61,7 @@ public class ControladorLogin implements Controlador{
             case 0: login.aviso("Usuario o contraseña incorrectos"); break;
             case 1: cambiarVistaIngreso(usuario); break;
             case 2: cambiarVistaEgreso(usuario); break;
+            default: login.aviso("No se encontro el cargo de la instancia"); break;
         }
     }
     
