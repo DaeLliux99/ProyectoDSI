@@ -23,7 +23,6 @@ public class ModeloIngreso implements Modelo {
     private VistaIngreso vi;
     private List <Producto> productos;
     private List <Paquete> paquetes;
-    private List <Paquete> recientes;
     private ProductoDAO pdao;
     private PaqueteDAO qdao;
     private Usuario usuario;
@@ -31,7 +30,6 @@ public class ModeloIngreso implements Modelo {
     public ModeloIngreso() {
         this.productos = new ArrayList<>();
         this.paquetes = new ArrayList<>();
-        this.recientes = new ArrayList<>();
         pdao = new ProductoDAO();
         qdao = new PaqueteDAO();
     }
@@ -45,6 +43,7 @@ public class ModeloIngreso implements Modelo {
     @Override
     public ModeloIngreso cargar() {
         paquetes = qdao.seleccionar();
+        productos = pdao.obtenerProductos();
         return this;
     }
     
@@ -67,10 +66,10 @@ public class ModeloIngreso implements Modelo {
         return this.paquetes;
     }
     
-    public List<Paquete> getRecientes() {
-        return this.recientes;
+    public List<Producto> getProductos() {
+        return this.productos;
     }
-
+    
     public Usuario getUsuario() {
         return usuario;
     }

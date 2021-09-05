@@ -29,38 +29,37 @@ public class ProductoDAO {
     }
     
     public List <Producto> obtenerProductos() {
-        List <Producto> productos;
-        /*
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Producto producto = null;        
+        List <Producto> productos = new ArrayList<>();
+
+        //List<Producto> productos = new ArrayList<>();
+        
         try {
-            FileInputStream fis = new FileInputStream(data);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            productos = (ArrayList<Producto>) ois.readObject();
-            ois.close();
-            System.out.println("Datos cargados con exito");
-            return productos;
-        } catch (FileNotFoundException fnde) {
-            System.out.println("No se ha encontrado el fichero de usuarios");
-            productos = new ArrayList<>();
-            productos.add(new Producto(1,"Pepsi"));
-            productos.add(new Producto(2, "CocaCola"));
+            conn = getConnection();
+            stmt = conn.prepareStatement("SELECT * FROM producto");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Integer idProducto= rs.getInt("idProducto");
+                String codigoProducto = rs.getNString("codigoProducto");
+                String nombre = rs.getNString("nombre");
+                producto = new Producto(idProducto, codigoProducto, nombre);
+                productos.add(producto);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
             try {
-                FileOutputStream fos = new FileOutputStream(data);
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(productos);
-                oos.close();
-                System.out.println("Datos guardados con éxito");
+                close(rs);
+                close(stmt);
+                close(conn);
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
             }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-            return productos;
-        } catch (IOException ioe) {
-            System.out.println("Error de entrada/salida al cargar los datos");
-        } catch (ClassNotFoundException ex) {
-            System.out.println("El fichero contiene datos erroneos");
         }
-        */
-        return null;
+        return productos;
     }
     
     public Producto seleccionarProducto(String nombreProducto) {

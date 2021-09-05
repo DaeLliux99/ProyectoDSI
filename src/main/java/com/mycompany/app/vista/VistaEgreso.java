@@ -18,6 +18,7 @@ import java.util.List;
 import com.mycompany.app.vista.tablas.TablaPaquetes;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import org.jdesktop.swingx.autocomplete.*;
 /**
  *
  * @author LEONARDO
@@ -44,17 +45,17 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
         botonAgregar = new javax.swing.JButton();
         botonVerificarPedido = new javax.swing.JButton();
         botonCancelarPedido = new javax.swing.JButton();
-        textoCodigo = new javax.swing.JTextField();
         textoCantidad = new javax.swing.JTextField();
         botonCerrarSesion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        textoNombreProducto = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaItems = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         botonGenerarReporte = new javax.swing.JButton();
+        textoCodigo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,9 +85,6 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
         });
         jPanel1.add(botonCancelarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, -1, 40));
 
-        textoCodigo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(textoCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 190, -1));
-
         textoCantidad.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jPanel1.add(textoCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 190, -1));
 
@@ -101,9 +99,9 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
         jLabel1.setText("Código del producto:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 180, -1));
+        textoNombreProducto.setEditable(false);
+        textoNombreProducto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(textoNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 180, -1));
 
         jLabel3.setText("Cantidad del producto:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, -1, -1));
@@ -129,6 +127,14 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
             }
         });
         jPanel1.add(botonGenerarReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 440, 150, 40));
+
+        textoCodigo.setEditable(true);
+        textoCodigo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                textoCodigoItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(textoCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 160, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,10 +172,15 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
         controladorEgreso.generarReporte();
     }//GEN-LAST:event_botonGenerarReporteActionPerformed
 
+    private void textoCodigoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_textoCodigoItemStateChanged
+        controladorEgreso.consultarNombreProducto();
+    }//GEN-LAST:event_textoCodigoItemStateChanged
+
     @Override
     public Vista setModelo(Modelo modelo) {
         this.modeloEgreso = (ModeloEgreso) modelo;
         this.listaItemCambiada();
+        this.cargarNombreAutocompletado();
         return this;
     }
 
@@ -199,8 +210,23 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
     }
     
     public String obtenerCodigoProducto() {
-        return this.textoCodigo.getText();
+        return (String) this.textoCodigo.getSelectedItem();
     }
+    
+    public String obtenerNombreProducto() {
+        return this.textoNombreProducto.getText();
+    }
+    
+    public void establecerNombre(String nombre) {
+        this.textoNombreProducto.setText(nombre);
+    }
+    
+    public void cargarNombreAutocompletado() {
+        for (Producto p: modeloEgreso.obtenerProductos()) {
+            this.textoCodigo.addItem(p.getCodigo());
+        }
+        AutoCompleteDecorator.decorate(textoCodigo);
+    } 
     
     private ModeloEgreso modeloEgreso;
     private ControladorEgreso controladorEgreso;
@@ -216,9 +242,9 @@ public class VistaEgreso extends javax.swing.JFrame implements Vista{
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tablaItems;
     private javax.swing.JTextField textoCantidad;
-    private javax.swing.JTextField textoCodigo;
+    private javax.swing.JComboBox<String> textoCodigo;
+    private javax.swing.JTextField textoNombreProducto;
     // End of variables declaration//GEN-END:variables
 }

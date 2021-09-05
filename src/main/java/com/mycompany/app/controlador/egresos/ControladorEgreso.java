@@ -73,5 +73,13 @@ public class ControladorEgreso implements Controlador{
         me.generarReporte();
         ve.aviso("Se hizo el reporte en PDF satisfactoriamente!");
     }
-    
+
+    public void consultarNombreProducto() {
+        String nombre = me.obtenerNombreProducto(ve.obtenerCodigoProducto());
+        if (nombre == null) {
+            ve.establecerNombre("");
+        } else {
+            ve.establecerNombre(nombre);
+        }
+    }    
 }

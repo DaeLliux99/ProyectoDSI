@@ -16,7 +16,7 @@ import com.mycompany.app.vista.tablas.TablaPaquetes;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-
+import org.jdesktop.swingx.autocomplete.*;
 /**
  *
  * @author esteban
@@ -35,11 +35,11 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
         jPanel1 = new javax.swing.JPanel();
         textoCodigoPaquete = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        textoNombreProducto = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         textoCantidadPaquete = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         botonIngresarPaquete = new javax.swing.JButton();
+        textoNombreProducto = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaProductos = new javax.swing.JTable();
@@ -61,6 +61,8 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
             }
         });
 
+        textoNombreProducto.setEditable(true);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -72,9 +74,9 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
                     .addComponent(jLabel1))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textoNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(30, 30, 30)
+                    .addComponent(jLabel2)
+                    .addComponent(textoNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(textoCantidadPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -93,8 +95,8 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textoCodigoPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textoNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textoCantidadPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textoCantidadPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -178,6 +180,7 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
     public Vista setModelo(Modelo modelo) {
         this.modeloIngreso = (ModeloIngreso) modelo;
         this.listaPaqueteCambiada();
+        this.cargarNombreAutocompletado();
         return this;
     }
 
@@ -197,7 +200,7 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
     }
     
     public String obtenerNombreProducto() {
-        return this.textoNombreProducto.getText();
+        return (String) this.textoNombreProducto.getSelectedItem();
     }
     
     public String obtenerCantidadPaquete() {
@@ -207,6 +210,13 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
     public void listaPaqueteCambiada() {
         tablaProductos.setModel(TablaFactory.crearTabla("paquetes", modeloIngreso.getPaquetes()));
     }
+    
+    public void cargarNombreAutocompletado() {
+        for (Producto p: modeloIngreso.getProductos()) {
+            this.textoNombreProducto.addItem(p.getNombre());
+        }
+        AutoCompleteDecorator.decorate(textoNombreProducto);
+    } 
     
     private ModeloIngreso modeloIngreso;
     private ControladorIngreso controladorIngreso;
@@ -224,6 +234,6 @@ public class VistaIngreso extends javax.swing.JFrame implements Vista {
     private javax.swing.JTable tablaProductos;
     private javax.swing.JTextField textoCantidadPaquete;
     private javax.swing.JTextField textoCodigoPaquete;
-    private javax.swing.JTextField textoNombreProducto;
+    private javax.swing.JComboBox<String> textoNombreProducto;
     // End of variables declaration//GEN-END:variables
 }

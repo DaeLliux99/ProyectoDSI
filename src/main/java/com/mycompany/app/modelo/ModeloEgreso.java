@@ -21,6 +21,7 @@ import com.mycompany.app.vista.VistaEgreso;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,7 +34,7 @@ public class ModeloEgreso implements Modelo{
     
     private VistaEgreso ve;
     private Pedido pedido;
-    //private List<Pedido> pedidos;
+    private HashMap <String, Producto> productos;
     private PedidoDAO pedidoDAO;
     private PaqueteDAO paqueteDAO;
     private ProductoDAO productoDAO;
@@ -45,8 +46,8 @@ public class ModeloEgreso implements Modelo{
         this.paqueteDAO = new PaqueteDAO();
         this.pedidoDAO = new PedidoDAO();
         this.itemDAO = new ItemDAO();
-        //this.pedidos = new ArrayList<>();
         this.pedido = new Pedido();
+        this.productos = new HashMap<>();
     }
     
     @Override
@@ -57,6 +58,7 @@ public class ModeloEgreso implements Modelo{
 
     @Override
     public ModeloEgreso cargar() {
+        this.llenarHashMap();
         return this;
     }
 
@@ -135,6 +137,26 @@ public class ModeloEgreso implements Modelo{
 
     public void reiniciarAtributos() {
         this.pedido = new Pedido();
+    }
+
+    public void llenarHashMap() {
+        for (Producto p: productoDAO.obtenerProductos()) {
+            System.out.println(p.getCodigo());
+            productos.put(p.getCodigo(), p);
+        }
+    }
+    
+    public String obtenerNombreProducto(String codigoProducto) {
+        Producto p = this.productos.get(codigoProducto);
+        return (p == null) ? null: p.getNombre();
+    }
+    
+    public List<Producto> obtenerProductos() {
+        List<Producto> prods = new ArrayList<>();
+        for (String clave: this.productos.keySet()) {
+            prods.add(this.productos.get(clave));
+        }
+        return prods;
     }
 
     public void generarReporte() {

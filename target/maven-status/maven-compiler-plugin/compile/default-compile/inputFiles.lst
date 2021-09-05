@@ -1,5 +1,6 @@
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/vista/VistaEgreso.java
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/modelo/producto/ProductoDAO.java
+/home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/modelo/reporte/Reporte.java
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/vista/tablas/TablaFactoryPaquetes.java
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/modelo/item/ItemDAO.java
 /home/esteban/maven_test/my-app/src/main/java/com/mycompany/app/vista/tablas/TablaFactory.java

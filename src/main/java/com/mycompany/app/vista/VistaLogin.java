@@ -72,6 +72,11 @@ public class VistaLogin extends javax.swing.JFrame implements Vista{
 
         botonSalir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         botonSalir.setText("SALIR");
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
         jPanel1.add(botonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, 120, -1));
 
         textoContraseña.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -94,6 +99,10 @@ public class VistaLogin extends javax.swing.JFrame implements Vista{
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
         controladorLogin.verificarCuenta();
     }//GEN-LAST:event_botonIngresarActionPerformed
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_botonSalirActionPerformed
 
     
     public void mostrar() {
